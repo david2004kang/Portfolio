@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-zh="Garden PingPong - David Kang's home" data-en="Garden PingPong - David Kang's home">Garden PingPong - David Kang's home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ffd700;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .project-section {
+            padding: 120px 0 80px;
+            color: white;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .project-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .project-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .project-demo {
+            text-align: center;
+            animation: fadeInLeft 1s ease;
+        }
+
+        .game-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .play-button {
+            display: inline-block;
+            background: #ffd700;
+            color: #333;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .project-details {
+            animation: fadeInRight 1s ease;
+        }
+
+        .project-details h2 {
+            color: #ffd700;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .project-details p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        .features-list li::before {
+            content: "✓ ";
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .project-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo" data-zh="David Kang's home" data-en="David Kang's home">David Kang's home</div>
+            <ul class="nav-links">
+                <li><a href="../../index.html" data-zh="首頁" data-en="Home">Home</a></li>
+                <li><a href="../../about.html" data-zh="關於我" data-en="About">About</a></li>
+                <li><a href="index.html" data-zh="Garden PingPong" data-en="Garden PingPong">Garden PingPong</a></li>
+                <li style="display: none;"><a href="../webgame2/index.html" data-zh="專案2" data-en="Project 2">Project 2</a></li>
+                <li><a href="../../contact.html" data-zh="聯絡我" data-en="Contact">Contact</a></li>
+                <li>
+                    <div class="lang-switcher">
+                        <button class="lang-btn" onclick="switchLanguage('zh')">中文</button>
+                        <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-section">
+            <div class="container">
+                <div class="project-header">
+                    <h1 data-zh="Garden PingPong" data-en="Garden PingPong">Garden PingPong</h1>
+                    <p data-zh="在花園中，用 PingPong 來消滅昆蟲及落葉，要小心突然的風吹哦！" data-en="In the garden, use PingPong to eliminate insects and fallen leaves, but be careful of sudden gusts of wind!">In the garden, use PingPong to eliminate insects and fallen leaves, but be careful of sudden gusts of wind!</p>
+                </div>
+
+                <div class="project-content">
+                    <div class="project-demo">
+                        <img src="../../assets/game1.png" alt="Garden PingPong Game" class="game-image">
+                        <a href="#" class="play-button" data-zh="尚未連結到正確的遊戲" data-en="Game not yet linked">Game not yet linked</a>
+                    </div>
+
+                    <div class="project-details">
+                        <h2 data-zh="專案介紹" data-en="Project Description">Project Description</h2>
+                        <p data-zh="Garden PingPong 是一個創新的花園主題遊戲，玩家需要使用乒乓球拍來消滅花園中的昆蟲和落葉。遊戲加入了風力系統，增加了遊戲的挑戰性和趣味性。" data-en="Garden PingPong is an innovative garden-themed game where players use a ping pong paddle to eliminate insects and fallen leaves in the garden. The game features a wind system that adds challenge and fun to the gameplay.">Garden PingPong is an innovative garden-themed game where players use a ping pong paddle to eliminate insects and fallen leaves in the garden. The game features a wind system that adds challenge and fun to the gameplay.</p>
+                        
+                        <h3 data-zh="主要特色" data-en="Key Features">Key Features</h3>
+                        <ul class="features-list">
+                            <li data-zh="花園主題的遊戲環境" data-en="Garden-themed game environment">Garden-themed game environment</li>
+                            <li data-zh="乒乓球拍控制系統" data-en="Ping pong paddle control system">Ping pong paddle control system</li>
+                            <li data-zh="多樣化的目標（昆蟲和落葉）" data-en="Diverse targets (insects and fallen leaves)">Diverse targets (insects and fallen leaves)</li>
+                            <li data-zh="動態風力系統" data-en="Dynamic wind system">Dynamic wind system</li>
+                            <li data-zh="流暢的物理引擎" data-en="Smooth physics engine">Smooth physics engine</li>
+                        </ul>
+
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Canvas API</span>
+                            <span class="tech-tag">Web Audio API</span>
+                        </div>
+
+                        <p data-zh="這個專案展示了我在遊戲開發和物理引擎設計方面的專業能力，特別是在創造有趣且具有挑戰性的遊戲機制方面的經驗。" data-en="This project demonstrates my professional skills in game development and physics engine design, especially in creating fun and challenging game mechanics.">This project demonstrates my professional skills in game development and physics engine design, especially in creating fun and challenging game mechanics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p data-zh="&copy; 2024 David Kang's home. 版權所有." data-en="&copy; 2024 David Kang's home. All rights reserved.">&copy; 2024 David Kang's home. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../assets/language.js"></script>
+</body>
+</html>

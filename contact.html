@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-zh="聯絡我 - David Kang" data-en="Contact Me - David Kang">Contact Me - David Kang</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ffd700;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .contact-section {
+            padding: 120px 0 80px;
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            animation: fadeInLeft 1s ease;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInLeft 1s ease 0.2s both;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            animation: fadeInLeft 1s ease 0.4s both;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-method .icon {
+            font-size: 2rem;
+            width: 50px;
+            text-align: center;
+        }
+
+        .contact-method .info h3 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-method .info p {
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            animation: fadeInRight 1s ease;
+        }
+
+        .contact-form h2 {
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ffd700;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            animation: fadeInLeft 1s ease 0.6s both;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-info h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo" data-zh="David Kang's home" data-en="David Kang's home">David Kang's home</div>
+            <ul class="nav-links">
+                <li><a href="index.html" data-zh="首頁" data-en="Home">Home</a></li>
+                <li><a href="about.html" data-zh="關於我" data-en="About">About</a></li>
+                <li><a href="projects/webgame1" data-zh="Garden PingPong" data-en="Garden PingPong">Garden PingPong</a></li>
+                <li style="display: none;"><a href="projects/webgame2" data-zh="專案2" data-en="Project 2">Project 2</a></li>
+                <li><a href="contact.html" data-zh="聯絡我" data-en="Contact">Contact</a></li>
+                <li>
+                    <div class="lang-switcher">
+                        <button class="lang-btn" onclick="switchLanguage('zh')">中文</button>
+                        <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h1 data-zh="聯絡我" data-en="Contact Me">Contact Me</h1>
+                        <p data-zh="我很樂意聽到您的想法和建議！無論是合作機會、技術討論，還是單純想聊聊，都歡迎與我聯絡。" data-en="I'd love to hear your thoughts and suggestions! Whether it's collaboration opportunities, technical discussions, or just a chat, feel free to contact me.">I'd love to hear your thoughts and suggestions! Whether it's collaboration opportunities, technical discussions, or just a chat, feel free to contact me.</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="icon">💬</div>
+                                <div class="info">
+                                    <h3 data-zh="發送訊息" data-en="Send Message">Send Message</h3>
+                                    <p data-zh="使用下方表單發送訊息給我" data-en="Use the form below to send me a message">Use the form below to send me a message</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://github.com/david2004kang" target="_blank" class="social-link" title="GitHub">🐙</a>
+                            <a href="https://medium.com/@david2004kang" target="_blank" class="social-link" title="Medium">📝</a>
+                            <a href="https://www.linkedin.com/in/kang-david-280746ba/" target="_blank" class="social-link" title="LinkedIn">💼</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h2 data-zh="發送訊息" data-en="Send Message">Send Message</h2>
+                        <form>
+                            <div class="form-group">
+                                <label for="name" data-zh="姓名" data-en="Name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Please enter your name" data-zh-placeholder="請輸入您的姓名" data-en-placeholder="Please enter your name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" data-zh="電子郵件" data-en="Email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Please enter your email" data-zh-placeholder="請輸入您的電子郵件" data-en-placeholder="Please enter your email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject" data-zh="主題" data-en="Subject">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="Please enter message subject" data-zh-placeholder="請輸入訊息主題" data-en-placeholder="Please enter message subject" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message" data-zh="訊息內容" data-en="Message">Message</label>
+                                <textarea id="message" name="message" placeholder="Please enter your message content..." data-zh-placeholder="請輸入您的訊息內容..." data-en-placeholder="Please enter your message content..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn" data-zh="發送訊息" data-en="Send Message">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p data-zh="&copy; 2024 David Kang's home. 版權所有." data-en="&copy; 2024 David Kang's home. All rights reserved.">&copy; 2024 David Kang's home. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/language.js"></script>
+    <script>
+        // Form handling with email functionality
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Get current language for messages
+            const currentLang = getCookie('preferredLanguage') || 'en';
+            
+            // Simple validation
+            if (!name || !email || !subject || !message) {
+                const msg = currentLang === 'zh' ? '請填寫所有必填欄位' : 'Please fill in all required fields';
+                alert(msg);
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                const msg = currentLang === 'zh' ? '請輸入有效的電子郵件地址' : 'Please enter a valid email address';
+                alert(msg);
+                return;
+            }
+            
+            // Create mailto link with form data
+            const emailBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+            const mailtoLink = `mailto:david2004kang@gmail.com?subject=${encodeURIComponent(subject)}&body=${emailBody}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            const msg = currentLang === 'zh' ? '感謝您的訊息！您的預設郵件客戶端將會開啟。' : 'Thank you for your message! Your default email client will open.';
+            alert(msg);
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

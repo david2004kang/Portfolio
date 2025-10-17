@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-zh="網頁遊戲2 - David Kang's home" data-en="Web Game 2 - David Kang's home">Web Game 2 - David Kang's home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .project-section {
+            padding: 120px 0 80px;
+            color: white;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .project-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .project-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .project-demo {
+            text-align: center;
+            animation: fadeInLeft 1s ease;
+        }
+
+        .game-placeholder {
+            width: 100%;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .play-button {
+            display: inline-block;
+            background: #ffd700;
+            color: #333;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .project-details {
+            animation: fadeInRight 1s ease;
+        }
+
+        .project-details h2 {
+            color: #ffd700;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .project-details p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        .features-list li::before {
+            content: "✓ ";
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .project-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">我的作品集</div>
+            <ul class="nav-links">
+                <li><a href="../../index.html">首頁</a></li>
+                <li><a href="../../about.html">關於我</a></li>
+                <li><a href="../webgame1/index.html">專案1</a></li>
+                <li><a href="index.html">專案2</a></li>
+                <li><a href="../../contact.html">聯絡我</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-section">
+            <div class="container">
+                <div class="project-header">
+                    <h1>網頁遊戲2</h1>
+                    <p>另一個創新的網頁遊戲專案</p>
+                </div>
+
+                <div class="project-content">
+                    <div class="project-demo">
+                        <div class="game-placeholder">🎯</div>
+                        <a href="#" class="play-button">立即遊玩</a>
+                    </div>
+
+                    <div class="project-details">
+                        <h2>專案介紹</h2>
+                        <p>這是一個全新的網頁遊戲概念，融合了策略性和動作元素。遊戲設計注重玩家體驗，提供多種遊戲模式和挑戰，讓玩家能夠享受不同層次的遊戲樂趣。</p>
+                        
+                        <h3>主要特色</h3>
+                        <ul class="features-list">
+                            <li>多種遊戲模式</li>
+                            <li>進階物理引擎</li>
+                            <li>社交功能整合</li>
+                            <li>成就系統</li>
+                            <li>排行榜功能</li>
+                        </ul>
+
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">WebGL</span>
+                            <span class="tech-tag">Three.js</span>
+                        </div>
+
+                        <p>這個專案展現了我在 3D 網頁技術和複雜遊戲邏輯實現方面的能力，同時也體現了對使用者體驗和遊戲設計的深入理解。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p data-zh="&copy; 2024 David Kang's home. 版權所有." data-en="&copy; 2024 David Kang's home. All rights reserved.">&copy; 2024 David Kang's home. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../assets/language.js"></script>
+</body>
+</html>
